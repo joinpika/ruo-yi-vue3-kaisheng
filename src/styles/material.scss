@@ -1,0 +1,32 @@
+.wrap-content {
+  padding: 16px;
+  background-color: #fff;
+  .header-tit{
+    font-size: 18px;
+  }
+  .search-box{
+    margin-top: 20px;
+    display: flex;
+    .search-btns{
+      margin-left: auto;
+    }
+  }
+  .box-line{
+    height: 1px;
+    width: 100%;
+    background-color: #E7E7E7;
+    margin-top: 1px;
+  }
+  .operation-btns{
+    margin: 20px 0;
+  }
+  .box-table{
+    margin-bottom: 16px;
+  }
+  .button-del {
+    color: #F20000;
+ }
+}
+::v-deep .search-box .el-form--inline .el-form-item {
+  margin-right: 16px;
+}

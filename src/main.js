@@ -1,4 +1,7 @@
 import { createApp } from 'vue'
+// import JsonExcel from 'vue-json-excel'
+import JsonExcel from 'vue-json-excel3'
+Vue.component('DownloadExcel', JsonExcel)
 
 import Cookies from 'js-cookie'
 
@@ -8,12 +11,15 @@ import 'element-plus/theme-chalk/dark/css-vars.css'
 import locale from 'element-plus/es/locale/lang/zh-cn'
 
 import '@/assets/styles/index.scss' // global css
+import '@/assets/styles/ruoyi.scss' // ruoyi css
 
 import App from './App'
 import store from './store'
+import plugins from './plugins' // plugins
 import router from './router'
 import directive from './directive' // directive
-
+import moment from 'moment'
+import { generateRandomString5, generateRandomString3 } from '@/utils/random'
 // 注册指令
 import plugins from './plugins' // plugins
 import { download } from '@/utils/request'
@@ -24,7 +30,7 @@ import SvgIcon from '@/components/SvgIcon'
 import elementIcons from '@/components/SvgIcon/svgicon'
 
 import './permission' // permission control
-
+// import './assets/icons' // icon
 import { useDict } from '@/utils/dict'
 import { getConfigKey } from "@/api/system/config"
 import { parseTime, resetForm, addDateRange, handleTree, selectDictLabel, selectDictLabels } from '@/utils/ruoyi'
@@ -46,6 +52,11 @@ import DictTag from '@/components/DictTag'
 
 const app = createApp(App)
 
+// vform 表单设计器
+import vform from '@/components/vform/VFormDesigner.umd.min.js'
+import '@/components/vform/VFormDesigner.css'
+
+
 // 全局方法挂载
 app.config.globalProperties.useDict = useDict
 app.config.globalProperties.download = download
@@ -56,6 +67,11 @@ app.config.globalProperties.addDateRange = addDateRange
 app.config.globalProperties.getConfigKey = getConfigKey
 app.config.globalProperties.selectDictLabel = selectDictLabel
 app.config.globalProperties.selectDictLabels = selectDictLabels
+app.config.globalProperties.download = download
+app.config.globalProperties.handleTree = handleTree
+app.config.globalProperties.$moment = moment
+app.config.globalProperties.generateRandomString5 = generateRandomString5
+app.config.globalProperties.generateRandomString3 = generateRandomString3
 
 // 全局组件挂载
 app.component('DictTag', DictTag)
@@ -66,6 +82,8 @@ app.component('ImagePreview', ImagePreview)
 app.component('RightToolbar', RightToolbar)
 app.component('Editor', Editor)
 
+app.use(directive)
+app.use(vform)
 app.use(router)
 app.use(store)
 app.use(plugins)
