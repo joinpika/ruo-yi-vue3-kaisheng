@@ -152,8 +152,8 @@
 import { ref, reactive, onMounted, nextTick } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { Delete, Plus } from '@element-plus/icons-vue'
-import Treeselect from '@riophae/vue-treeselect'
-import '@riophae/vue-treeselect/dist/vue-treeselect.css'
+import {Treeselect} from 'vue3-treeselect'
+import 'vue3-treeselect/dist/vue3-treeselect.css'
 import { addBusOutbound, updateBusOutbound, getBusLocationList, getBusInventoryAllList, getBusOutboundDetailList } from '@/api/statistics/busInventory'
 import { listBusWarehouseTreeFa } from '@/api/statistics/BusWarehouse'
 

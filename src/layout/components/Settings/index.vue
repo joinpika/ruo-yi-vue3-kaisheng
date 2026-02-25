@@ -146,14 +146,14 @@ function handleNavType(val) {
 /** 菜单导航设置 */
 watch(() => navType, val => {
   if (val.value == 1) {
-    appStore.sidebar.opened = true
+    if (appStore.sidebar) appStore.sidebar.opened = true
     appStore.toggleSideBarHide(false)
   }
   if (val.value == 2) {
-    appStore.sidebar.opened = true
+    if (appStore.sidebar) appStore.sidebar.opened = true
   }
   if (val.value == 3) {
-    appStore.sidebar.opened = false
+    if (appStore.sidebar) appStore.sidebar.opened = false
     appStore.toggleSideBarHide(true)
   }
   if ([1, 3].includes(val.value)) {

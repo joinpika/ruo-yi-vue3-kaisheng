@@ -15,15 +15,18 @@
 
 <script setup>
 import { useWindowSize } from '@vueuse/core'
+import { ref, computed, watch, watchEffect } from 'vue'
 import Sidebar from './components/Sidebar/index.vue'
 import { AppMain, Navbar, Settings, TagsView } from './components'
 import useAppStore from '@/store/modules/app'
 import useSettingsStore from '@/store/modules/settings'
 
+const appStore = useAppStore()
 const settingsStore = useSettingsStore()
+
 const theme = computed(() => settingsStore.theme)
-const sidebar = computed(() => useAppStore().sidebar)
-const device = computed(() => useAppStore().device)
+const sidebar = computed(() => appStore.sidebar || { opened: true, withoutAnimation: false, hide: false })
+const device = computed(() => appStore.device)
 const needTagsView = computed(() => settingsStore.tagsView)
 const fixedHeader = computed(() => settingsStore.fixedHeader)
 
@@ -39,21 +42,21 @@ const WIDTH = 992 // refer to Bootstrap's responsive design
 
 watch(() => device.value, () => {
   if (device.value === 'mobile' && sidebar.value.opened) {
-    useAppStore().closeSideBar({ withoutAnimation: false })
+    appStore.closeSideBar({ withoutAnimation: false })
   }
 })
 
 watchEffect(() => {
   if (width.value - 1 < WIDTH) {
-    useAppStore().toggleDevice('mobile')
-    useAppStore().closeSideBar({ withoutAnimation: true })
+    appStore.toggleDevice('mobile')
+    appStore.closeSideBar({ withoutAnimation: true })
   } else {
-    useAppStore().toggleDevice('desktop')
+    appStore.toggleDevice('desktop')
   }
 })
 
 function handleClickOutside() {
-  useAppStore().closeSideBar({ withoutAnimation: false })
+  appStore.closeSideBar({ withoutAnimation: false })
 }
 
 const settingRef = ref(null)

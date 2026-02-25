@@ -56,8 +56,8 @@
 
 <script setup>
   import { ref, reactive, onMounted, watch } from 'vue'
-  import Treeselect from "@riophae/vue-treeselect";
-  import "@riophae/vue-treeselect/dist/vue-treeselect.css";
+  import { Treeselect } from 'vue3-treeselect'
+  import 'vue3-treeselect/dist/vue3-treeselect.css'
   import { Plus } from '@element-plus/icons-vue'
   import { listWarehouseList } from "@/api/statistics/BusWarehouse";
   import { listBusWarehouseLocation } from "@/api/statistics/BusWarehouseLocation";

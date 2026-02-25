@@ -140,7 +140,7 @@
   import { Search, Refresh, Plus, Warning } from '@element-plus/icons-vue'
   import { listCategory, addCategory, delCategory, updateCategory } from '@/file/category.js'
   import { listFile } from '@/file/index.js'
-  import VueJsonExcel from 'vue-json-excel'
+  import VueJsonExcel from 'vue-json-excel3'
   import { getToken } from '@/utils/auth'
   import moment from 'moment'
 

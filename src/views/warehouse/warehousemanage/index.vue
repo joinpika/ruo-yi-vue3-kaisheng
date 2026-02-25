@@ -35,7 +35,7 @@
 
       <!-- 列表相关 -->
       <el-row :gutter="20" style="margin-top: 16px;">
-        <splitpanes :horizontal="store.getters.device === 'mobile'" class="default-theme">
+        <splitpanes :horizontal="appStore.device === 'mobile'" class="default-theme">
           <pane size="16">
             <el-col>
               <div class="head-container">
@@ -103,15 +103,15 @@
 import { ref, reactive, onMounted, watch } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { Search, Refresh } from '@element-plus/icons-vue'
-import { useStore } from 'vuex'
+import useAppStore from '@/store/modules/app'
 import { Splitpanes, Pane } from 'splitpanes'
 import 'splitpanes/dist/splitpanes.css'
 import addEdit from './components/addEdit.vue'
 import { listBusWarehouseTreeFa, listBusLocationTreeFa, listWarehouseList } from '@/api/statistics/BusWarehouse'
 import { getBusInventoryList } from '@/api/statistics/busInventory.js'
 
-// Vuex store
-const store = useStore()
+// Pinia store
+const appStore = useAppStore()
 
 // 响应式数据
 const loading = ref(true)

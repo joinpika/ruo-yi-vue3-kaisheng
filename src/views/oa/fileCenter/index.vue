@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <el-row :gutter="20">
-      <splitpanes :horizontal="store.getters.device === 'mobile'" class="default-theme">
+      <splitpanes :horizontal="isMobile" class="default-theme">
         <pane size="16">
           <el-col>
             <div class="head-container">
@@ -251,7 +251,7 @@
 import { ref, reactive, onMounted, nextTick, watch } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { Search, Refresh, Plus, Download, View } from '@element-plus/icons-vue'
-import { useStore } from 'vuex'
+import useAppStore from '@/store/modules/app'
 import moment from 'moment'
 import MultipleUpload from '@/components/upload/multipleUpload.vue'
 import { listCategory } from '@/file/category.js'
@@ -263,9 +263,12 @@ import { getToken } from '@/utils/auth'
 import { previewFileWithKKFileView } from '@/utils/filePreview.js'
 import { Splitpanes, Pane } from 'splitpanes'
 import 'splitpanes/dist/splitpanes.css'
-
+import { computed } from 'vue'
 // Vuex store
-const store = useStore()
+// const store = useStore()
+
+// Pinia store
+const appStore = useAppStore()
 
 // 响应式数据
 const threeData = ref('')
@@ -358,6 +361,8 @@ const formRules = reactive({
     }
   ]
 })
+
+const isMobile = computed(() => appStore.device === 'mobile')
 
 // 文件上传头部
 const headersObj = {

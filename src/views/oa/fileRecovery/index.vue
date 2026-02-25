@@ -155,7 +155,7 @@
 import { ref, reactive, onMounted, nextTick } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { Search, Refresh, View } from '@element-plus/icons-vue'
-import VueJsonExcel from 'vue-json-excel'
+import VueJsonExcel from 'vue-json-excel3'
 import { getToken } from '@/utils/auth'
 import { listBusFileLevel } from '@/file/BusFileLevel.js'
 import { listBusFile, recoverBusFile, delBusFile } from '@/file/busFile.js'

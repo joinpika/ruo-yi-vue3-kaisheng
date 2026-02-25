@@ -26,7 +26,7 @@
 
       <!-- 列表相关 -->
       <el-row :gutter="20">
-        <splitpanes :horizontal="this.$store.getters.device === 'mobile'" class="default-theme">
+        <splitpanes :horizontal="appStore.device === 'mobile'" class="default-theme">
           <pane size="16">
             <el-col>
               <div class="head-container">
@@ -93,9 +93,9 @@ import "splitpanes/dist/splitpanes.css";
 // import { listBusFileLog } from "@/file/busFileLog.js";
 import addEdit from "./components/addEdit.vue";
 import { finishedProductList,delPost } from "@/api/material/finishedProduct";
-import { useStore } from 'vuex'
+import useAppStore from '@/store/modules/app'
 
-const store = useStore()
+const appStore = useAppStore()
 
 const loading = ref(true)
 const type = ref("")
