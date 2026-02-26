@@ -26,7 +26,7 @@
 
       <!-- 列表相关 -->
       <el-row :gutter="20">
-        <splitpanes :horizontal="store.getters.device === 'mobile'" class="default-theme">
+        <splitpanes :horizontal="appStore.device === 'mobile'" class="default-theme">
           <pane size="16">
             <el-col>
               <div class="head-container">
@@ -90,14 +90,14 @@
 <script setup>
 import { ref, reactive, onMounted } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
-import { useStore } from 'vuex'
+import useAppStore from '@/store/modules/app'
 import { Splitpanes, Pane } from "splitpanes";
 import "splitpanes/dist/splitpanes.css";
 // import { listBusFileLog } from "@/file/busFileLog.js";
 import addEdit from "./components/addEdit.vue";
 import { finishedProductList,delPost } from "@/api/material/finishedProduct";
 
-const store = useStore()
+const appStore = useAppStore()
 
 const loading = ref(true)
 const type = ref("")

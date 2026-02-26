@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 // import JsonExcel from 'vue-json-excel'
 import JsonExcel from 'vue-json-excel3'
-Vue.component('DownloadExcel', JsonExcel)
+
 
 import Cookies from 'js-cookie'
 
@@ -15,13 +15,12 @@ import '@/assets/styles/ruoyi.scss' // ruoyi css
 
 import App from './App'
 import store from './store'
-import plugins from './plugins' // plugins
 import router from './router'
 import directive from './directive' // directive
 import moment from 'moment'
 import { generateRandomString5, generateRandomString3 } from '@/utils/random'
-// 注册指令
 import plugins from './plugins' // plugins
+import { preventReClick } from '@/utils/preventReClick'
 import { download } from '@/utils/request'
 
 // svg图标
@@ -53,10 +52,13 @@ import DictTag from '@/components/DictTag'
 const app = createApp(App)
 
 // vform 表单设计器
-import vform from '@/components/vform/VFormDesigner.umd.min.js'
-import '@/components/vform/VFormDesigner.css'
+// import vform from '@/components/vform/VFormDesigner.umd.min.js'
+// import '@/components/vform/VFormDesigner.css'
+// 使用 Vue 3 版本
+import vform from 'vform3-builds'
+import 'vform3-builds/dist/designer.style.css'
 
-
+app.directive('preventReClick', preventReClick)
 // 全局方法挂载
 app.config.globalProperties.useDict = useDict
 app.config.globalProperties.download = download
@@ -69,6 +71,7 @@ app.config.globalProperties.selectDictLabel = selectDictLabel
 app.config.globalProperties.selectDictLabels = selectDictLabels
 app.config.globalProperties.download = download
 app.config.globalProperties.handleTree = handleTree
+app.config.globalProperties.preventReClick = preventReClick
 app.config.globalProperties.$moment = moment
 app.config.globalProperties.generateRandomString5 = generateRandomString5
 app.config.globalProperties.generateRandomString3 = generateRandomString3
@@ -81,6 +84,7 @@ app.component('ImageUpload', ImageUpload)
 app.component('ImagePreview', ImagePreview)
 app.component('RightToolbar', RightToolbar)
 app.component('Editor', Editor)
+app.component('DownloadExcel', JsonExcel)
 
 app.use(directive)
 app.use(vform)

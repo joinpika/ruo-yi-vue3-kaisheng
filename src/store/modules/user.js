@@ -17,6 +17,23 @@ const useUserStore = defineStore(
       roles: [],
       permissions: []
     }),
+     getters: {
+      // 对应原来的 getters
+      token: (state) => state.token,
+      avatar: (state) => state.avatar,
+      name: (state) => state.name,
+      roles: (state) => state.roles,
+      permissions: (state) => state.permissions,
+      
+      // 原来 getters 有 introduction，但 state 里没有
+      // 如果不需要就删掉，需要的话要在 state 里添加
+      // introduction: (state) => state.introduction,
+      
+      // 可以额外加一些常用的
+      nickName: (state) => state.nickName,
+      userId: (state) => state.id,
+      isLogin: (state) => !!state.token
+    },
     actions: {
       // 登录
       login(userInfo) {

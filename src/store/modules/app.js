@@ -12,9 +12,15 @@ const useAppStore = defineStore(
       device: 'desktop',
       size: Cookies.get('size') || 'default'
     }),
+    getters: {
+      // 直接在这里定义，不需要单独文件
+      sidebar: (state) => state.sidebar,
+      size: (state) => state.size,
+      device: (state) => state.device
+    },
     actions: {
       toggleSideBar(withoutAnimation) {
-        if (this.sidebar.hide) {
+        if (!this.sidebar || this.sidebar.hide) {
           return false
         }
         this.sidebar.opened = !this.sidebar.opened
@@ -25,10 +31,12 @@ const useAppStore = defineStore(
           Cookies.set('sidebarStatus', 0)
         }
       },
-      closeSideBar({ withoutAnimation }) {
+      closeSideBar({ withoutAnimation } = {}) {
         Cookies.set('sidebarStatus', 0)
-        this.sidebar.opened = false
-        this.sidebar.withoutAnimation = withoutAnimation
+        if (this.sidebar) {
+          this.sidebar.opened = false
+          this.sidebar.withoutAnimation = withoutAnimation
+        }
       },
       toggleDevice(device) {
         this.device = device
@@ -38,7 +46,9 @@ const useAppStore = defineStore(
         Cookies.set('size', size)
       },
       toggleSideBarHide(status) {
-        this.sidebar.hide = status
+        if (this.sidebar) {
+          this.sidebar.hide = status
+        }
       }
     }
   })

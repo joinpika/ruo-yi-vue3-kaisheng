@@ -6,6 +6,14 @@ const useTagsViewStore = defineStore(
       cachedViews: [],
       iframeViews: []
     }),
+    getters: {
+      // 对应原来的 visitedViews 和 cachedViews
+      visitedViews: (state) => state.visitedViews,
+      cachedViews: (state) => state.cachedViews,
+      
+      // iframeViews 也可以加上，方便用
+      iframeViews: (state) => state.iframeViews
+    },
     actions: {
       addView(view) {
         this.addVisitedView(view)

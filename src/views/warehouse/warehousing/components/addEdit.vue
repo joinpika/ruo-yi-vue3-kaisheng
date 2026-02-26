@@ -83,7 +83,7 @@
   import { getBusInventoryList } from "@/api/statistics/busInventory.js"
 
   // 使用 Vuex 的设备状态
-  const device = computed(() => store?.getters?.device || 'desktop')
+  const device = computed(() => appStore.device || 'desktop')
 
   const dict = {
     type: {

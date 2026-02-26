@@ -156,7 +156,7 @@
   import { Search, Refresh, Plus, Warning } from '@element-plus/icons-vue'
   import { listBusFileLevel, addBusFileLevel, delBusFileLevel, updateBusFileLevel } from '@/file/BusFileLevel.js'
   import { listFile, listRole } from '@/file/index.js'
-  import VueJsonExcel from 'vue-json-excel'
+  import VueJsonExcel from 'vue-json-excel3'
   import { getToken } from '@/utils/auth'
   import moment from 'moment'
 

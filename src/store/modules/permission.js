@@ -18,6 +18,19 @@ const usePermissionStore = defineStore(
       topbarRouters: [],
       sidebarRouters: []
     }),
+     getters: {
+      // 对应原来的 permission_routes
+      permission_routes: (state) => state.routes,
+      // 或者直接叫 routes，但保持原名叫 permission_routes 兼容旧代码
+      routes: (state) => state.routes,
+      
+      topbarRouters: (state) => state.topbarRouters,
+      defaultRoutes: (state) => state.defaultRoutes,
+      sidebarRouters: (state) => state.sidebarRouters,
+      
+      // 还可以加个 addRoutes 方便用
+      addRoutes: (state) => state.addRoutes
+    },
     actions: {
       setRoutes(routes) {
         this.addRoutes = routes

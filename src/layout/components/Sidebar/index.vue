@@ -41,7 +41,7 @@ const sidebarRouters = computed(() => permissionStore.sidebarRouters)
 const showLogo = computed(() => settingsStore.sidebarLogo)
 const sideTheme = computed(() => settingsStore.sideTheme)
 const theme = computed(() => settingsStore.theme)
-const isCollapse = computed(() => !appStore.sidebar.opened)
+const isCollapse = computed(() => !(appStore.sidebar?.opened ?? true))
 
 // 获取菜单背景色
 const getMenuBackground = computed(() => {
