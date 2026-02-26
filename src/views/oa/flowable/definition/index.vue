@@ -4,7 +4,7 @@
       <el-form-item label="名称" prop="name">
         <el-input
           v-model="queryParams.name"
-          placeholder="请输入名称1"
+          placeholder="请输入名称"
           clearable
           size="small"
           @keyup.enter.native="handleQuery"
